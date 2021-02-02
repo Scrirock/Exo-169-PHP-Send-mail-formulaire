@@ -8,7 +8,8 @@ Un simple formulaire **HTML** :
 * une zone de texte `textarea` message
 * Un bouton `submit` envoyer
 
-Lorsque vous cliquez sur le bouton `submit` envoyer, votre page envoie évidemment le message par courrier au destinataire défini dans le champ `input` email !
+Lorsque vous cliquez sur le bouton `submit` envoyer, votre page envoie évidemment le message par 
+courrier au destinataire défini dans le champ `input` email !
 
 Pour ce faire, vous devez utiliser un Backend **PHP**, consultez la documentation officielle, il y a une `fonction` pour cela.
 
