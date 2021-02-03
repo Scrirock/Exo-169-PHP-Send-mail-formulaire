@@ -32,17 +32,20 @@
     <?php
 
         if (isset($_POST["message"], $_POST["mail"])) {
-            if (strlen($_POST["message"]) > 500) {
+            $message = $_POST["message"];
+            $mail = $_POST["mail"];
+
+            if (strlen($message) > 500) {
                 echo "Le message est trop long.";
             }
             else {
-                $_POST["mail"] = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
+                $mail = filter_var($mail, FILTER_SANITIZE_EMAIL);
 
-                if (filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
-                    mail($_POST["mail"], "subject test", $_POST["message"]);
+                if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    mail($mail, "subject test", $message);
                 }
                 else {
-                    echo($_POST["mail"] . " n'est pas une adresse mail valide");
+                    echo($mail . " n'est pas une adresse mail valide");
                 }
             }
         }
