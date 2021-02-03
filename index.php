@@ -6,17 +6,38 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>envoie mail truc</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-teal.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 <body>
+    <div id="container">
+        <form action="index.php" method="POST">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="mail">
+                <label class="mdl-textfield__label" for="mail">E-Mail</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" rows="4" id="message" maxlength="500"></textarea>
+                <label class="mdl-textfield__label" for="message">Message</label>
+            </div>
 
-    <form action="coucou.php" method="POST">
-        <label for="mail">E-mail: </label>
-        <input type="email" id="mail">
-        <label for="message">Message: </label>
-        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" type="submit">
+                <i class="material-icons">add</i>
+            </button>
+        </form>
+    </div>
 
-        <input type="submit">
-    </form>
+    <?php
+
+        if (isset($_POST["message"], $_POST["mail"])){
+            $_POST["mail"] = filter_var($_POST["mail"], FILTER_SANITIZE_EMAIL);
+            if (filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) mail($_POST["mail"], "subject test", $_POST["message"]);
+            else echo($_POST["mail"]." n'est pas une adresse mail valide");
+        }
+
+    ?>
 
 </body>
 </html>
